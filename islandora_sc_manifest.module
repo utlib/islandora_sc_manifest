@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Allows generation of SharedCanvas Manifests
+ */
+
+
+/**
+ * Implements hook_menu().
+ */
+function islandora_sc_manifest_menu() {
+
+  return array(
+    'islandora/object/%islandora_object/scmanifest' => array(
+      'page callback' => 'islandora_sc_manifest_callback',
+      'page arguments' => array(2),
+      'type' => MENU_LOCAL_TASK,
+      'title' => 'SC Manifest',
+      'access callback' => 'islandora_object_access_callback',
+      'access arguments' => array(ISLANDORA_VIEW_OBJECTS, 2),
+      'file' => 'includes/callbacks.inc',
+    ),
+  );
+}
+
+

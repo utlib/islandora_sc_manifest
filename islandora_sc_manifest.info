@@ -1,0 +1,6 @@
+name = "Islandora SC Manifest"
+description = "Allows building of SharedCanvas Manifests."
+dependencies[] = islandora
+package = Islandora
+version = 7.x-dev
+core = 7.x
