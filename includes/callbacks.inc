@@ -75,7 +75,7 @@ function _generate_scmanifest($form, &$form_state) {
 	    //echo $width . "\n";
 	    //echo $height . "\n";
 
-	    $canvas = new Canvas($page_uri, $page_object->label, $page_uri."/datastream/MODS/view");
+	    $canvas = new Canvas($page_uri, $page_pid, $page_object->label, $page_uri."/datastream/MODS/view");
 	    $canvas->setImage($page_uri."/datastream/$dsid/view", $mimetype, $width, $height);
 	    $manifest->addCanvas($canvas);
 
