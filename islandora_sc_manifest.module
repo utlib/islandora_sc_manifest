@@ -12,16 +12,18 @@
 function islandora_sc_manifest_menu() {
 
   return array(
-    'islandora/object/%islandora_object/scmanifest' => array(
-      'page callback' => 'islandora_sc_manifest_callback',
-      'page arguments' => array(2),
+    'islandora/object/%islandora_object/manage/scmanifest' => array(
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('scmanifest_generate', 2),
       'type' => MENU_LOCAL_TASK,
       'title' => 'SC Manifest',
-      'access callback' => 'islandora_object_access_callback',
-      'access arguments' => array(ISLANDORA_VIEW_OBJECTS, 2),
+      'access callback' => 'scmanifest_access',
+      'access arguments' => array(2),
       'file' => 'includes/callbacks.inc',
     ),
   );
 }
 
-
+function scmanifest_access($fedora_object) {
+  return in_array('islandora:bookCModel', $fedora_object->models) && user_is_logged_in();
+}

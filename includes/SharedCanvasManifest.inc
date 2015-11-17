@@ -33,10 +33,10 @@ class SharedCanvasManifest {
    */
   function getJson() {
     $scManifest = array (
+        '@context' => 'http://iiif.io/api/presentation/2/context.json',
         '@id' => $this->id,
         '@type' => 'sc:Manifest',
         'label' => $this->object_label,
-        'metadata' => $this->metadata_uri,
         'sequences' => array ( // an array but will always be a single object in our application
             array (
                 '@type' => 'sc:Sequence',
