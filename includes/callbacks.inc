@@ -4,15 +4,6 @@
  * Module callbacks.
  */
 
-/**
- * SC manifest callback.
- */
-function islandora_sc_manifest_callback(AbstractObject $object) {
-  module_load_include('inc', 'islandora_sc_manifest', 'includes/shared_canvas_builder');
-  drupal_json_output(islandora_sc_get_shared_canvas_manifest($object));
-}
-
-
 function scmanifest_generate($form, &$form_state, $pid) {
 	$form['title'] = array(
       '#markup' => 'Generate SC manifest for '.$pid.'<br>'
@@ -22,13 +13,22 @@ function scmanifest_generate($form, &$form_state, $pid) {
       '#type' => 'hidden'
     );
 
-    $form['generate'] = array(
-        '#type' => 'submit',
-        '#value' => t('Generate SC Manifest'),
-        '#weight' => 1,
-        '#submit' => array('_generate_scmanifest')
-    );
+    if (isset($pid['SC'])) {
 
+	    $form['generate'] = array(
+	        '#type' => 'submit',
+	        '#value' => t('Re-Generate SC Manifest'),
+	        '#weight' => 1,
+	        '#submit' => array('_generate_scmanifest')
+	    );
+	} else {
+	    $form['generate'] = array(
+	        '#type' => 'submit',
+	        '#value' => t('Generate SC Manifest'),
+	        '#weight' => 1,
+	        '#submit' => array('_generate_scmanifest')
+	    );		
+	}
 	return $form;
 }
 
