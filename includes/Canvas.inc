@@ -1,6 +1,7 @@
 <?php
 class Canvas {
   protected $object_id;
+  protected $pid;
   protected $object_label;
   protected $metadata_uri;
   protected $image_uri;
@@ -8,8 +9,11 @@ class Canvas {
   protected $image_height;
   protected $image_width;
 
-  function __construct($id, $label, $meta_uri) {
+  private $iiif_base = "https://iiif.library.utoronto.ca/v2/";
+
+  function __construct($id, $pid, $label, $meta_uri) {
     $this->object_id = $id;
+    $this->pid = $pid;
     $this->object_label = $label;
     $this->metadata_uri = $meta_uri;
   }
@@ -26,17 +30,25 @@ class Canvas {
         '@type' => 'sc:Canvas',
         '@id' => $this->object_id,
         'label' => $this->object_label,
-        'metadata' => $this->metadata_uri,
+        'height' => $this->image_height,
+        'width' => $this->image_width,
         'images' => array ( // always contain only one
             array (
+                '@id' => $this->image_uri,
                 '@type' => 'oa:Annotation',
                 'motivation' => 'sc:Painting',
+                'on' => $this->object_id,
                 'resource' => array (
                     '@id' => $this->image_uri,
                     '@type' => 'dctypes:Image',
                     'format' => $this->image_format,
                     'height' => $this->image_height,
-                    'width' => $this->image_width
+                    'width' => $this->image_width,
+                    'service' => array (
+                        '@context' => 'http://iiif.io/api/image/2/context.json',
+                        '@id' => $this->iiif_base . $this->pid,
+                        'profile' => 'http://iiif.io/api/image/2/level2.json'
+                     )
                 )
             )
         )
