@@ -21,6 +21,7 @@ function scmanifest_generate($form, &$form_state, $pid) {
       '#value' =>  $pid->id,
       '#type' => 'hidden'
     );
+
     $form['generate'] = array(
         '#type' => 'submit',
         '#value' => t('Generate SC Manifest'),

@@ -17,11 +17,29 @@ function islandora_sc_manifest_menu() {
       'page arguments' => array('scmanifest_generate', 2),
       'type' => MENU_LOCAL_TASK,
       'title' => 'SC Manifest',
-      'access callback' => 'islandora_object_access_callback',
-      'access arguments' => array(ISLANDORA_VIEW_OBJECTS, 2),
+      'access callback' => 'tpenconnector_access',
+      'access arguments' => array(2),
       'file' => 'includes/callbacks.inc',
     ),
   );
 }
 
+/**
+ * Determines whether or not to show this modules tab.
+ *
+ * @global object $user
+ *
+ * @param FedoraObject $fedora_object
+ *   A FedoraObject.
+ *
+ * @return bool
+ *   Whether the user has access or not.
+ */
+function scmanifest_access($fedora_object) {
 
+  $parent_obj = $fedora_object->relationships->get('info:fedora/fedora-system:def/relations-external#', 'isMemberOfCollection');
+
+  $parent_obj_pid = $parent_obj[0]['object']['value'];
+
+  return in_array('islandora:bookCModel', $fedora_object->models) && ($parent_obj_pid === 'paleography:manuscripts') && user_is_logged_in();
+}
