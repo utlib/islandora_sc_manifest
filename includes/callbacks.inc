@@ -53,7 +53,6 @@ function _generate_scmanifest($form, &$form_state) {
 	
 	foreach($pages as $page) {
 	    $page_pid = $page['pid']['value'];
-	    echo "Processing Page: $page_pid\n";
 	    
 	    $page_object = $fo->get_object($page_pid);
 	    $page_uri = "$base_url/islandora/object/$page_pid";
