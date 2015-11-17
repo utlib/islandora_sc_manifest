@@ -17,7 +17,7 @@ function scmanifest_generate($form, &$form_state, $pid) {
 
 	    $form['generate'] = array(
 	        '#type' => 'submit',
-	        '#value' => t('Re-Generate SC Manifest'),
+	        '#value' => t('Re-generate SC Manifest'),
 	        '#weight' => 1,
 	        '#submit' => array('_generate_scmanifest')
 	    );
