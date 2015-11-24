@@ -9,7 +9,7 @@ class MyFedoraObject {
     protected $repository;
     
     function __construct() {
-        $this->url = 'http://repository.library.utoronto.ca:8080/fedora';
+        $this->url = 'http://repository.library.utoronto.ca/fedora';
         $this->user = 'fedoraAdmin';
         $this->pass = 'p1214TvlFed';
         
