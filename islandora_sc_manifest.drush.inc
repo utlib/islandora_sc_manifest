@@ -23,7 +23,7 @@ function drush_islandora_sc_manifest_sc_manifest_generator($pid = NULL) {
   }
 
   if ($pid != 'full') {
-    generate_sc_manifest($pid, TRUE);
+    __generate_sc_manifest($pid, TRUE);
   } else {
     $fo = new MyFedoraObject();
     $manuscripts = $fo->get_children('paleography:manuscripts');
