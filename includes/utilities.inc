@@ -2,10 +2,6 @@
 
 	function generate_sc_manifest($object_pid, $from_drush = FALSE) {
 
-		module_load_include('inc', 'islandora_sc_manifest', 'includes/MyFedoraObject');
-		module_load_include('inc', 'islandora_sc_manifest', 'includes/SharedCanvasManifest');
-		module_load_include('inc', 'islandora_sc_manifest', 'includes/Canvas');
-
 		$base_url = "https://paleography.library.utoronto.ca";
 		$dsid = "JPGHIRES";
 
