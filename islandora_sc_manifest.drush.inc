@@ -29,7 +29,7 @@ function drush_islandora_sc_manifest_sc_manifest_generator($pid = NULL) {
     $manuscripts = $fo->get_children('paleography:manuscripts');
     foreach ($manuscripts as $manuscript) {
       $pid = $manuscript['pid']['value'];
-      generate_sc_manifest($pid,TRUE);
+      __generate_sc_manifest($pid,TRUE);
     }
   }
   
