@@ -14,10 +14,9 @@ function islandora_sc_manifest_drush_command() {
 }
 
 function drush_islandora_sc_manifest_sc_manifest_generator($pid = NULL) {
-  module_load_include('inc', 'islandora_sc_manifest', 'includes/MyFedoraObject');
-  module_load_include('inc', 'islandora_sc_manifest', 'includes/SharedCanvasManifest');
-  module_load_include('inc', 'islandora_sc_manifest', 'includes/Canvas');
-  module_load_include('inc', 'islandora_sc_manifest', 'includes/utilities');
+
+  require_once ("includes/MyFedoraObject.inc");
+  require_once ("includes/utilities.inc");
 
   if (empty($pid)) {
     return drush_print("Please provide PID or full as the argument");
