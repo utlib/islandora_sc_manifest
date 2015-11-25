@@ -2,6 +2,11 @@
 
 	function generate_sc_manifest($object_pid, $from_drush = FALSE) {
 
+		require_once ("MyFedoraObject.inc");
+		require_once ("SharedCanvasManifest.inc");
+		require_once ("Canvas.inc");
+
+
 		$base_url = "https://paleography.library.utoronto.ca";
 		$dsid = "JPGHIRES";
 
@@ -17,6 +22,7 @@
 		}
 		foreach($pages as $page) {
 		    $page_pid = $page['pid']['value'];
+
 		    if ($from_drush) {
 		    	echo "Processing Page: $page_pid\n";
 			}
