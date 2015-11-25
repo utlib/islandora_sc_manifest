@@ -34,7 +34,11 @@ function scmanifest_generate($form, &$form_state, $pid) {
 
 function generate_submit($form, &$form_state) {
 
-	require_once "utilities.inc";
+	module_load_include('inc', 'islandora_sc_manifest', 'includes/MyFedoraObject');
+	module_load_include('inc', 'islandora_sc_manifest', 'includes/SharedCanvasManifest');
+	module_load_include('inc', 'islandora_sc_manifest', 'includes/Canvas');
+	module_load_include('inc', 'islandora_sc_manifest', 'includes/utilities');
+	
 	$object_pid = $form_state['values']['object_pid'];
 
 	generate_sc_manifest($object_pid);
