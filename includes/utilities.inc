@@ -10,7 +10,8 @@
 		$base_url = "https://paleography.library.utoronto.ca";
 		$dsid = "JPGHIRES";
 
-		$fo = new MyFedoraObject();
+		$user = user_load(1);
+		$fo = new MyFedoraObject($user->name, $user->pass);
 
 		$object = $fo->get_object($object_pid);
 
@@ -46,8 +47,12 @@
 		    //echo $width . "\n";
 		    //echo $height . "\n";
 
-		    $canvas = new Canvas($page_uri, $page_pid, $page_object->label, $page_uri."/datastream/MODS/view");
-		    $canvas->setImage($page_uri."/datastream/$dsid/view", $mimetype, $width, $height);
+		    $metadata_uri = $page_uri . "/datastream/MODS/view";
+		    $image_uri = $page_uri . "/datastream/TN/view";
+		    $resource_uri = $page_uri . "/datastream/$dsid/view";
+
+		    $canvas = new Canvas($page_uri, $page_pid, $page_object->label, $metadata_uri);
+		    $canvas->setImage($image_uri, $resource_uri, $mimetype, $width, $height);
 		    $manifest->addCanvas($canvas);
 
 		    //print_r($canvas);
