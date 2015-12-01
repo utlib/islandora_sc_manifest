@@ -18,8 +18,9 @@ class Canvas {
     $this->metadata_uri = $meta_uri;
   }
 
-  function setImage($uri, $format = 'image/jpeg', $width, $height) {
-    $this->image_uri = $uri;
+  function setImage($image_uri, $resource_uri, $format = 'image/jpeg', $width, $height) {
+    $this->image_uri = $image_uri;
+    $this->resource_uri = $resource_uri;
     $this->image_format = $format;
     $this->image_width = $width;
     $this->image_height = $height;
@@ -39,7 +40,7 @@ class Canvas {
                 'motivation' => 'sc:Painting',
                 'on' => $this->object_id,
                 'resource' => array (
-                    '@id' => $this->image_uri,
+                    '@id' => $this->resource_uri,
                     '@type' => 'dctypes:Image',
                     'format' => $this->image_format,
                     'height' => $this->image_height,
