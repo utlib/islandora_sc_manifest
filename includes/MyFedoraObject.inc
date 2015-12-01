@@ -8,11 +8,11 @@ class MyFedoraObject {
     protected $pass;
     protected $repository;
     
-    function __construct() {
+    function __construct($user = NULL, $pass = NULL) {
+        #$this->url = variable_get('islandora_base_url','http://repository.library.utoronto.ca/fedora');
         $this->url = 'http://repository.library.utoronto.ca/fedora';
-        $this->user = 'fedoraAdmin';
-        $this->pass = 'p1214TvlFed';
-        
+        $this->user = $user;
+        $this->pass = $pass;
         $this->init_connection();
     }
     
