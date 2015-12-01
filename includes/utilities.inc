@@ -10,7 +10,8 @@
 		$base_url = "https://paleography.library.utoronto.ca";
 		$dsid = "JPGHIRES";
 
-		$fo = new MyFedoraObject();
+		$user = user_load(1);
+		$fo = new MyFedoraObject($user->name, $user->pass);
 
 		$object = $fo->get_object($object_pid);
 
