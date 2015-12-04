@@ -18,7 +18,8 @@ class Canvas {
     $this->metadata_uri = $meta_uri;
   }
 
-  function setImage($image_uri, $resource_uri, $format = 'image/jpeg', $width, $height) {
+  function setImage($thumbnail_uri, $image_uri, $resource_uri, $format = 'image/jpeg', $width, $height) {
+    $this->thumbnail_uri = $thumbnail_uri;
     $this->image_uri = $image_uri;
     $this->resource_uri = $resource_uri;
     $this->image_format = $format;
@@ -33,6 +34,14 @@ class Canvas {
         'label' => $this->object_label,
         'height' => $this->image_height,
         'width' => $this->image_width,
+        'thumbnail' => array (
+            '@id' => $this->thumbnail_uri,
+            'service' => array (
+                '@context' => 'http://iiif.io/api/image/2/context.json',
+                '@id' => $this->iiif_base . $this->pid,
+                'profile' => 'http://iiif.io/api/image/2/level2.json'
+            )
+        ),
         'images' => array ( // always contain only one
             array (
                 '@id' => $this->image_uri,
