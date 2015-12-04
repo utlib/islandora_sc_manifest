@@ -38,21 +38,23 @@
 
 		    // this width and height is for the original JP2
 		    // recalculate width and height based on fixed height of 2000 (which is the case for JPGHIRES
-		    $height = round($width * 2000/$height);
-		    $width = 2000;
+		    //$height = round($width * 2000/$height);
+		    //$width = 2000;
 		    
 		    $mimetype = $page_object[$dsid]->mimetype;
 		    
 		    //echo $mimetype . "\n";
 		    //echo $width . "\n";
 		    //echo $height . "\n";
+		    //https://iiif.library.utoronto.ca/v2/paleography%3A2071/full/2000,/0/default.jpg
 
 		    $metadata_uri = $page_uri . "/datastream/MODS/view";
-		    $image_uri = $page_uri . "/datastream/TN/view";
+		    $thumbnail_uri = $page_uri . "/datastream/TN/view";
+		    $image_uri = $page_uri . "/datastream/$dsid/view";
 		    $resource_uri = $page_uri . "/datastream/$dsid/view";
 
 		    $canvas = new Canvas($page_uri, $page_pid, $page_object->label, $metadata_uri);
-		    $canvas->setImage($image_uri, $resource_uri, $mimetype, $width, $height);
+		    $canvas->setImage($thumbnail_uri, $image_uri, $resource_uri, $mimetype, $width, $height);
 		    $manifest->addCanvas($canvas);
 
 		    //print_r($canvas);
