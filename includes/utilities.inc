@@ -65,6 +65,6 @@
 		
 		//break;
 		$json = $manifest->getJson();
-		$fo->add_datastream(&$object, "SC", $json);
+		$fo->add_datastream(&$object, "SC", "SharedCanvas Manifest", "application/json", $json);
 		drupal_set_message(t('SC Manifest created'));
 	}
