@@ -69,11 +69,11 @@ class MyFedoraObject {
     }
 
 
-    public function add_datastream($object, $dsid, $content) {
+    public function add_datastream($object, $dsid, $label, $mimetype, $content) {
         if ($object) {
             $datastream = isset($object[$dsid]) ? $object[$dsid] : $object->constructDatastream($dsid);
-            $datastream->label = 'SharedCanvas Manifest';
-            $datastream->mimeType = 'application/json';
+            $datastream->label = $label;
+            $datastream->mimeType = $mimetype;
             $datastream->setContentFromString($content);
             
             // There's no harm in doing this if the datastream is already ingested or if the object is only constructed.
