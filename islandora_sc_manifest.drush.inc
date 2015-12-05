@@ -15,7 +15,9 @@ function islandora_sc_manifest_drush_command() {
 
 function drush_islandora_sc_manifest_sc_manifest_generator($pid = NULL) {
 
-  require_once ("includes/MyFedoraObject.inc");
+  if (!libraries_load('utlfedoraobject'))
+    return drush_print("UTLFedoraObject not found!");
+
   require_once ("includes/utilities.inc");
 
   if (empty($pid)) {
@@ -27,7 +29,7 @@ function drush_islandora_sc_manifest_sc_manifest_generator($pid = NULL) {
   } else {
     $user = user_load(1);
 
-    $fo = new MyFedoraObject($user->name, $user->pass);
+    $fo = new UTLFedoraObject($user->name, $user->pass);
     $manuscripts = $fo->get_children('paleography:manuscripts');
     foreach ($manuscripts as $manuscript) {
       $pid = $manuscript['pid']['value'];
