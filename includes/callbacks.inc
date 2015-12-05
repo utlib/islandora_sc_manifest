@@ -5,7 +5,7 @@
  */
 
 function scmanifest_generate($form, &$form_state, $pid) {
-	$form['title'] = array(
+    $form['title'] = array(
       '#markup' => 'Generate SC manifest for '.$pid.'<br>'
     );
     $form['object_pid'] = array(
@@ -34,8 +34,11 @@ function scmanifest_generate($form, &$form_state, $pid) {
 
 function generate_submit($form, &$form_state) {
 
-	module_load_include('inc', 'islandora_sc_manifest', 'includes/utilities');	
-	$object_pid = $form_state['values']['object_pid'];
-	__generate_sc_manifest($object_pid);
-
+    if (!libraries_load('utlfedoraobject')) {
+        drupal_set_message(t("UTLFedoraObject not found!"), "error");
+    }else {
+        module_load_include('inc', 'islandora_sc_manifest', 'includes/utilities');	
+        $object_pid = $form_state['values']['object_pid'];
+        __generate_sc_manifest($object_pid);
+    }
 }
