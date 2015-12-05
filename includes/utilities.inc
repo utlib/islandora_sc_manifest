@@ -2,16 +2,14 @@
 
 	function __generate_sc_manifest($object_pid, $from_drush = FALSE) {
 
-		require_once ("MyFedoraObject.inc");
 		require_once ("SharedCanvasManifest.inc");
 		require_once ("Canvas.inc");
-
 
 		$base_url = "https://paleography.library.utoronto.ca";
 		//$dsid = "JPGHIRES";
 
 		$user = user_load(1);
-		$fo = new MyFedoraObject($user->name, $user->pass);
+		$fo = new UTLFedoraObject($user->name, $user->pass);
 
 		$object = $fo->get_object($object_pid);
 
