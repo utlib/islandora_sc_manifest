@@ -6,7 +6,7 @@
 		require_once ("Canvas.inc");
 		require_once ("utlfedoraobject.inc");
 
-		$base_url = "http://localhost:8000";
+		$base_url = variable_get('islandora_sc_manifest_site');
 		//$dsid = "JPGHIRES";
 
 		$user = user_load(1);
@@ -51,7 +51,7 @@
 		    $metadata_uri = $page_uri . "/datastream/MODS/view";
 		    $thumbnail_uri = $page_uri . "/datastream/TN/view";
 		    $image_uri = $page_uri . "/datastream/TN/view";
-		    $resource_uri = "https://iiif.library.utoronto.ca/v2/$page_pid/full/2000,/0/default.jpg";
+		    $resource_uri = variable_get('islandora_sc_manifest_iiif_server') . "/$page_pid/full/2000,/0/default.jpg";
 
 		    $canvas = new Canvas($page_uri, $page_pid, $page_object->label, $metadata_uri);
 		    $canvas->setImage($thumbnail_uri, $image_uri, $resource_uri, $mimetype, $width, $height);
