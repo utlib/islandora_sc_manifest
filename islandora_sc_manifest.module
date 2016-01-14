@@ -21,6 +21,17 @@ function islandora_sc_manifest_menu() {
       'access arguments' => array(2),
       'file' => 'includes/callbacks.inc',
     ),
+
+    'admin/islandora/tools/sc_manifest' => array(
+      'title' => 'Islandora ShardCanvas Manifest Generator',
+      'description' => 'Configure settings for Islandora SC Manifest module',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('islandora_sc_manifest_admin_settings_form'),
+      'access arguments' => array('administer site configuration'),
+      'file' => 'includes/admin.form.inc',
+      'type' => MENU_NORMAL_ITEM,
+    ),
+
   );
 }
 
