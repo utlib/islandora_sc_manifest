@@ -4,8 +4,9 @@
 
 		require_once ("SharedCanvasManifest.inc");
 		require_once ("Canvas.inc");
+		require_once ("utlfedoraobject.inc");
 
-		$base_url = "https://paleography.library.utoronto.ca";
+		$base_url = "http://localhost:8000";
 		//$dsid = "JPGHIRES";
 
 		$user = user_load(1);
@@ -63,6 +64,6 @@
 		
 		//break;
 		$json = $manifest->getJson();
-		$fo->add_datastream(&$object, "SC", "SharedCanvas Manifest", "application/json", $json);
+		$fo->add_datastream($object, "SC", "SharedCanvas Manifest", "application/json", $json);
 		drupal_set_message(t('SC Manifest created'));
 	}
