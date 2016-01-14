@@ -15,7 +15,7 @@ function islandora_sc_manifest_drush_command() {
 
 function drush_islandora_sc_manifest_sc_manifest_generator($pid = NULL) {
 
-  if (!libraries_load('utlfedoraobject'))
+  if (!libraries_load('utlfedoraobject') and !module_load_include('inc', 'islandora_sc_manifest', 'includes/utlfedoraobject'))
     return drush_print("UTLFedoraObject not found!");
 
   require_once ("includes/utilities.inc");

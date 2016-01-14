@@ -33,8 +33,8 @@ function scmanifest_generate($form, &$form_state, $pid) {
 }
 
 function generate_submit($form, &$form_state) {
-
-    if (!libraries_load('utlfedoraobject')) {
+	
+    if (!libraries_load('utlfedoraobject') and !module_load_include('inc', 'islandora_sc_manifest', 'includes/utlfedoraobject')) {
         drupal_set_message(t("UTLFedoraObject not found!"), "error");
     }else {
         module_load_include('inc', 'islandora_sc_manifest', 'includes/utilities');	
