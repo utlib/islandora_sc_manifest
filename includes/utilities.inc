@@ -6,7 +6,7 @@
 		require_once ("Canvas.inc");
 		require_once ("utlfedoraobject.inc");
 
-		$base_url = variable_get('islandora_sc_manifest_site');
+		global $base_url; 
 		//$dsid = "JPGHIRES";
 
 		$user = user_load(1);
