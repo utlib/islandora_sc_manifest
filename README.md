@@ -1,19 +1,38 @@
+# Islandora SharedCanvas Manifest Generator
+
 ## Introduction
 
-This module enables generation of SharedCanvas Manifests for a group of Fedora Objects in a namespace, or else for a single Fedora Object.
+This module produces [SharedCanvas Manifest](http://iiif.io/api/presentation/2.0/#manifest) Islandora datastreams for [Islandora Book Solution Pack](https://github.com/Islandora/islandora_solution_pack_book) objects to be used by the [Mirador Bookreader](https://github.com/utlib/islandora_mirador_bookreader) module. 
+
+This module development was supported by the The Andrew W. Mellon Foundation for the [French Renaissance Paleography website] (https://paleography.library.utoronto.ca/).
+
+## Install
+1. Clone this module into Drupal's module directory and enable.
+3. Go to admin/islandora/tools/sc_manifest` and enter the URLs for the [IIIF Image API](http://iiif.io/api/image/2.0/) server and Fedora.
 
 ## Usage
-
+There are two ways to generate manifests: Drush or individual Book Solution Pack object. Both generate a new datastream called **SC** in their target objects.
 ### Drush
-
+On the command line, run the following drush command:
 ```
-drush scgen PID_TO_REINDEX (e.g. paleography:418) | FULL
+drush scgen PID_TO_REINDEX
 ```
+where PID_TO_REINDEX is a single Book Solution Pack object.
+Run the following to reindex the entire repository:
+```
+drush scgen FULL
+```
+### UI
+Each Book Solution Pack object has a new **SC Manifest** option under **Manage** through the admin UI for each object. The option exists as a sub-menu item.
 
-Entering FULL as an argument will reindex all book objects under paleography:manuscript object
+Clicking **Re-generate SC Manifest** will add a new SC datastream for the current object. Subsequent usage will refresh the datastream.
 
-### In Drupal
-Go to manage > click on SC Manifest and then click on (Re-) Generate SC Manifest button to generate SharedCanvas Manifests
+## Current maintainers
 
-
+* [University of Toronto Libraries:](http://its.library.utoronto.ca/)
+	* [Kelli Babcock](http://its.library.utoronto.ca/staff/kelli-babcock)
+	* [Bilal Khalid](https://github.com/bilalkhalid)
+	* [Sunny Lee](https://github.com/sunnywd)
+	* [Sean Xiao Zhao](https://github.com/sean-xiao-zhao7)
+	* [Chulhee Yoon](https://github.com/cyoon84)
 
