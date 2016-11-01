@@ -16,13 +16,17 @@
 
 		$manifest = new SharedCanvasManifest("$base_url/islandora/object/$object_pid/datastream/SC/view", $object->label, "$base_url/islandora/object/$object_pid/datastream/MODS");
 		
-		$pages = $fo->get_pages($object_pid);
+		// Get the pages ordered by sequence number
+		module_load_include('inc', 'islandora_paged_content', 'includes/utilities');
+		$pages = islandora_paged_content_get_pages($object);
 
 		if ($from_drush) {
 			echo "Processing $object_pid\n";
 		}
 		foreach($pages as $page) {
-		    $page_pid = $page['pid']['value'];
+
+		    $page_pid = $page['pid'];
+
 		    if ($from_drush) {
 		    	echo "Processing Page: $page_pid\n";
 			}
