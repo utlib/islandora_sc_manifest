@@ -16,7 +16,7 @@ class Canvas {
     $this->pid = $pid;
     $this->object_label = $label;
     $this->metadata_uri = $meta_uri;
-    $this->iiif_base = variable_get('islandora_sc_manifest_iiif_server', 'https://iiif.library.utoronto.ca/v2/');
+    $this->iiif_base = variable_get('islandora_sc_manifest_iiif_server', 'https://iiif.library.utoronto.ca/v2');
   }
 
   function setImage($thumbnail_uri, $image_uri, $resource_uri, $format = 'image/jpeg', $width, $height) {
@@ -39,7 +39,7 @@ class Canvas {
             '@id' => $this->thumbnail_uri,
             'service' => array (
                 '@context' => 'http://iiif.io/api/image/2/context.json',
-                '@id' => $this->iiif_base . $this->pid,
+                '@id' => $this->iiif_base ."/". $this->pid,
                 'profile' => 'http://iiif.io/api/image/2/level2.json'
             )
         ),
@@ -57,7 +57,7 @@ class Canvas {
                     'width' => $this->image_width,
                     'service' => array (
                         '@context' => 'http://iiif.io/api/image/2/context.json',
-                        '@id' => $this->iiif_base . $this->pid,
+                        '@id' => $this->iiif_base ."/". $this->pid,
                         'profile' => 'http://iiif.io/api/image/2/level2.json'
                      )
                 )
