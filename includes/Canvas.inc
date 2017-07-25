@@ -9,13 +9,14 @@ class Canvas {
   protected $image_height;
   protected $image_width;
 
-  private $iiif_base = "https://iiif.library.utoronto.ca/v2/";
+  private $iiif_base; 
 
   function __construct($id, $pid, $label, $meta_uri) {
     $this->object_id = $id;
     $this->pid = $pid;
     $this->object_label = $label;
     $this->metadata_uri = $meta_uri;
+    $this->iiif_base = variable_get('islandora_sc_manifest_iiif_server', 'https://iiif.library.utoronto.ca/v2/');
   }
 
   function setImage($thumbnail_uri, $image_uri, $resource_uri, $format = 'image/jpeg', $width, $height) {
