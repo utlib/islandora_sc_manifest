@@ -20,7 +20,7 @@ function islandora_sc_manifest_admin_settings_form($form, &$form_state) {
 	'islandora_sc_manifest_iiif_server' => array(
 		'#type' => 'textfield',
 		'#title' => t('IIIF compliant image server base URL'),
-		'#description' => t('Base URL of the IIIF image server used to generate absolute IIIF URLs'),
+		'#description' => t('Base URL of the IIIF image server used to generate absolute IIIF URLs. Add URL without a trailing slash'),
 		'#default_value' => $get_default_value('islandora_sc_manifest_iiif_server', ''),
 	)
   );
