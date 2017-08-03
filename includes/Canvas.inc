@@ -24,8 +24,8 @@ class Canvas {
     $this->image_uri = $image_uri;
     $this->resource_uri = $resource_uri;
     $this->image_format = $format;
-    $this->image_width = $width;
-    $this->image_height = $height;
+    $this->image_width = intval($width);
+    $this->image_height = intval($height);
   }
 
   function toArray() {
