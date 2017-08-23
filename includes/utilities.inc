@@ -6,15 +6,16 @@
 		require_once ("Canvas.inc");
 		require_once ("utlfedoraobject.inc");
 
-		global $base_url; 
-		//$dsid = "JPGHIRES";
+		global $base_url;
+
+		$iiif_manifest_base_uri = variable_get('islandora_sc_manifest_iiif_manifest_base_uri', 'https://iiif.library.utoronto.ca/manifest/v2/'); 
 
 		$user = user_load(1);
 		$fo = new UTLFedoraObject($user->name, $user->pass);
 
 		$object = $fo->get_object($object_pid);
 
-		$manifest = new SharedCanvasManifest("$base_url/islandora/object/$object_pid/datastream/SC/view", $object->label, "$base_url/islandora/object/$object_pid/datastream/MODS");
+		$manifest = new SharedCanvasManifest($iiif_manifest_base_uri.$object_pid, $object->label, "$base_url/islandora/object/$object_pid/datastream/MODS");
 		
 		// Get the pages ordered by sequence number
 		module_load_include('inc', 'islandora_paged_content', 'includes/utilities');
