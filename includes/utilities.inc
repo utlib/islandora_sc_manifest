@@ -8,14 +8,14 @@
 
 		global $base_url;
 
-		$iiif_manifest_base_uri = variable_get('islandora_sc_manifest_iiif_manifest_base_uri', 'https://iiif.library.utoronto.ca/manifest/v2/'); 
+		$iiif_manifest_base_uri = variable_get('islandora_sc_manifest_manifest_base_uri', 'https://iiif.library.utoronto.ca/presentation/v2'); 
 
 		$user = user_load(1);
 		$fo = new UTLFedoraObject($user->name, $user->pass);
 
 		$object = $fo->get_object($object_pid);
 
-		$manifest = new SharedCanvasManifest($iiif_manifest_base_uri.$object_pid, $object->label, "$base_url/islandora/object/$object_pid/datastream/MODS");
+		$manifest = new SharedCanvasManifest($iiif_manifest_base_uri."/".$object_pid, $object->label, "$base_url/islandora/object/$object_pid/datastream/MODS");
 		
 		// Get the pages ordered by sequence number
 		module_load_include('inc', 'islandora_paged_content', 'includes/utilities');
@@ -46,7 +46,7 @@
 		    //$width = 2000;
 		    
 		    //$mimetype = $page_object[$dsid]->mimetype;
-                    $mimetype = "image/jpg";
+            $mimetype = "image/jpg";
 		    
 		    //echo $mimetype . "\n";
 		    //echo $width . "\n";
