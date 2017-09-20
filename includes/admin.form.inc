@@ -22,7 +22,13 @@ function islandora_sc_manifest_admin_settings_form($form, &$form_state) {
 		'#title' => t('IIIF compliant image server base URL'),
 		'#description' => t('Base URL of the IIIF image server used to generate absolute IIIF URLs. Add URL without a trailing slash'),
 		'#default_value' => $get_default_value('islandora_sc_manifest_iiif_server', ''),
-	)
+	),
+  'islandora_sc_manifest_manifest_base_uri' => array(
+    '#type' => 'textfield',
+    '#title' => t('IIIF manifest base URL'),
+    '#description' => t('Base URI of SC Manifests. Add URI without a trailing slash'),
+    '#default_value' => variable_get('islandora_sc_manifest_manifest_base_uri', ''),
+  )  
   );
   return system_settings_form($form);
 }
