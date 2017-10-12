@@ -27,16 +27,16 @@ function drush_islandora_sc_manifest_sc_manifest_generator($pid = NULL) {
   if ($pid != 'full') {
     __generate_sc_manifest($pid, TRUE);
   } else {
-    $user = user_load(1);
+    echo "Full option doesn't work at the moment. Please specify PID.\n";
 
-    $fo = new UTLFedoraObject($user->name, $user->pass);
-    $manuscripts = $fo->get_children('paleography:manuscripts');
-    foreach ($manuscripts as $manuscript) {
-      $pid = $manuscript['pid']['value'];
-      __generate_sc_manifest($pid,TRUE);
-    }
+    // $user = user_load(1);
+
+    // $fo = new UTLFedoraObject($user->name, $user->pass);
+    // $manuscripts = $fo->get_children('paleography:manuscripts');
+    // foreach ($manuscripts as $manuscript) {
+    //   $pid = $manuscript['pid']['value'];
+    //   __generate_sc_manifest($pid,TRUE);
+    // }
   }
-  
-
   
 }

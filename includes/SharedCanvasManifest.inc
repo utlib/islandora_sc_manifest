@@ -37,6 +37,7 @@ class SharedCanvasManifest {
         '@id' => $this->id,
         '@type' => 'sc:Manifest',
         'label' => $this->object_label,
+        'attribution' => 'For rights and reproduction information please contact collections@library.utoronto.ca',
         'sequences' => array ( // an array but will always be a single object in our application
             array (
                 '@type' => 'sc:Sequence',

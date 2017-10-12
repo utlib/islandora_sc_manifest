@@ -17,12 +17,16 @@ function islandora_sc_manifest_admin_settings_form($form, &$form_state) {
   };
   //$solr_enabled = module_exists('islandora_solr');
   $form = array(
-	'islandora_sc_manifest_iiif_server' => array(
-		'#type' => 'textfield',
-		'#title' => t('IIIF compliant image server base URL'),
-		'#description' => t('Base URL of the IIIF image server used to generate absolute IIIF URLs. Add URL without a trailing slash'),
-		'#default_value' => $get_default_value('islandora_sc_manifest_iiif_server', ''),
-	)
+  'islandora_sc_manifest_image_uri' => array(
+    '#type' => 'textfield',
+    '#title' => t('SC Manifest Image URI'),
+    '#default_value' => $get_default_value('islandora_sc_manifest_image_uri', 'https://iiif.library.utoronto.ca/image/v2/'),
+  ),
+  'islandora_sc_manifest_presentation_uri' => array(
+    '#type' => 'textfield',
+    '#title' => t('SC Manifest Presentation URI'),
+    '#default_value' => $get_default_value('islandora_sc_manifest_presentation_uri', 'https://iiif.library.utoronto.ca/presentation/v2/'),
+  )
   );
   return system_settings_form($form);
 }
