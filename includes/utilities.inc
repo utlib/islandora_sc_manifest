@@ -15,7 +15,7 @@
 
 		$object = $fo->get_object($object_pid);
 
-		$manifest = new SharedCanvasManifest($islandora_sc_manifest_presentation_uri.$object_pid, $object->label, "$base_url/islandora/object/$object_pid/datastream/MODS");
+		$manifest = new SharedCanvasManifest($islandora_sc_manifest_presentation_uri.$object_pid.'/manifest.json', $object->label, "$base_url/islandora/object/$object_pid/datastream/MODS");
 		
 		// Get the pages ordered by sequence number
 		module_load_include('inc', 'islandora_paged_content', 'includes/utilities');
