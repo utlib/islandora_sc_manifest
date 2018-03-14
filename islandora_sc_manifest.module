@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Allows generation of SharedCanvas Manifests
+ * Allows generation of IIIF objects
  */
 
 
@@ -14,17 +14,17 @@ function islandora_sc_manifest_menu() {
   return array(
     'islandora/object/%islandora_object/manage/scmanifest' => array(
       'page callback' => 'drupal_get_form',
-      'page arguments' => array('scmanifest_generate', 2),
+      'page arguments' => array('iiif_generate', 2),
       'type' => MENU_LOCAL_TASK,
-      'title' => 'SC Manifest',
-      'access callback' => 'scmanifest_access',
+      'title' => 'IIIF Generation',
+      'access callback' => 'iiif_generation_access',
       'access arguments' => array(2),
       'file' => 'includes/callbacks.inc',
     ),
 
     'admin/islandora/tools/sc_manifest' => array(
-      'title' => 'Islandora ShardCanvas Manifest Generator',
-      'description' => 'Configure settings for Islandora SC Manifest module',
+      'title' => 'Islandora IIIF Generator',
+      'description' => 'Configure settings for Islandora IIIF Generation module',
       'page callback' => 'drupal_get_form',
       'page arguments' => array('islandora_sc_manifest_admin_settings_form'),
       'access arguments' => array('administer site configuration'),
@@ -35,11 +35,12 @@ function islandora_sc_manifest_menu() {
   );
 }
 
-function scmanifest_access($fedora_object) {
+function iiif_generation_access($fedora_object) {
   $allowedModels = array(
     'islandora:bookCModel', 
     'islandora:sp_basic_image',
     'islandora:sp_large_image_cmodel',
+    'islandora:collectionCModel',
     'islandora:compoundCModel',
   );
   $result = !empty(array_intersect($fedora_object->models, $allowedModels));

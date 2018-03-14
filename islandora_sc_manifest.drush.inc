@@ -4,7 +4,7 @@ function islandora_sc_manifest_drush_command() {
 
   return array(
     'sc-manifest-generator' => array(
-      'description' => 'Generate SC manifest for the book object',
+      'description' => 'Generate the IIIF representation for the object',
       'aliases' => array('scgen'),
       'arguments' => array(
         'pid' => dt('PID_TO_REINDEX|full'),
@@ -31,7 +31,7 @@ function drush_islandora_sc_manifest_sc_manifest_generator($pid = NULL, $debug =
     echo "Full option doesn't work at the moment. Please specify a sinlge PID.\n";
     $user = user_load(1);
     $fo = new UTLFedoraObject($user->name, $user->pass);
-    $manuscripts = $fo->get_children('paleography:manuscripts');
+    $manuscripts = $fo->get_collection_children('paleography:manuscripts');
     foreach ($manuscripts as $manuscript) {
       $pid = $manuscript['pid']['value'];
       echo "$pid\n";

@@ -42,19 +42,35 @@ class UTLFedoraObject {
     }
   }
 
-  public function get_children($pid = "") {
-    if ($pid != "") {
-      try {
-        $ri = $this->repository->ri;
-        return $ri->sparqlQuery("SELECT *
-          FROM <#ri>
-          WHERE {
-           ?pid <fedora-rels-ext:isMemberOfCollection> <info:fedora/$pid> .
-          }"
-        );
-      }catch(Exception $e) {
-        return "Error while accessing children: $e\n";
-      }
+  public function get_collection_children($pid) {
+    try {
+      $ri = $this->repository->ri;
+      return $ri->sparqlQuery("SELECT ?pid ?label ?models
+        FROM <#ri>
+        WHERE {
+          ?pid <fedora-model:label> ?label .
+          ?pid <fedora-rels-ext:isMemberOfCollection> <info:fedora/$pid> .
+          ?pid <fedora-model:hasModel> ?models .
+        }"
+      );
+    }catch(Exception $e) {
+      return "Error while accessing children: $e\n";
+    }
+  }
+
+  public function get_compound_children($pid) {
+    try {
+      $ri = $this->repository->ri;
+      return $ri->sparqlQuery("SELECT ?pid ?label ?models
+        FROM <#ri>
+        WHERE {
+          ?pid <fedora-model:label> ?label .
+          ?pid <fedora-rels-ext:isConstituentOf> <info:fedora/$pid> .
+          ?pid <fedora-model:hasModel> ?models .
+        }"
+      );
+    }catch(Exception $e) {
+      return "Error while accessing children: $e\n";
     }
   }
 

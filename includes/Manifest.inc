@@ -14,9 +14,9 @@ class Manifest {
    * @param string $manifest_label label for the Manifest
    * @param string $metadata_uri url for the 'MODS' datastream
    */
-  function __construct($id, $label, $metadata_uri) {
+  function __construct($id, $manifest_label, $metadata_uri) {
     $this->id = $id;
-    $this->manifest_label = $label;
+    $this->manifest_label = $manifest_label;
     $this->metadata_uri = $metadata_uri;
   }
 

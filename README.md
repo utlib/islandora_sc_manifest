@@ -1,8 +1,15 @@
-# Islandora SharedCanvas Manifest Generator
+# Islandora IIIF Generator
 
 ## Introduction
 
-This module produces [SharedCanvas Manifest](http://iiif.io/api/presentation/2.0/#manifest) Islandora datastreams for [Islandora Book Solution Pack](https://github.com/Islandora/islandora_solution_pack_book) objects to be used by the [Mirador Bookreader](https://github.com/utlib/islandora_mirador_bookreader) module. 
+This module produces [IIIF object](http://iiif.io/api/presentation/2.1) Islandora datastreams for the following Islandora Solution Packs:
+ * [Islandora Book Solution Pack](https://github.com/Islandora/islandora_solution_pack_book)
+ * [Islandora Large Image Solution Pack](https://wiki.duraspace.org/display/ISLANDORA715/Large+Image+Solution+Pack)
+ * [Islandora Basic Image Solution Pack](https://wiki.duraspace.org/display/ISLANDORA715/Basic+Image+Solution+Pack)
+ * [Islandora Basic Collection Solution Pack](https://wiki.duraspace.org/display/ISLANDORA715/Basic+Collection+Solution+Pack)
+ * [Islandora Compound Solution Pack](https://wiki.duraspace.org/display/ISLANDORA715/Compound+Solution+Pack)
+
+The generated IIIF object will be used by the [Mirador Bookreader](https://github.com/utlib/islandora_mirador_bookreader) module. 
 
 This module development was supported by the The Andrew W. Mellon Foundation for the [French Renaissance Paleography website] (https://paleography.library.utoronto.ca/).
 

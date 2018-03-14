@@ -4,26 +4,26 @@
  * Module callbacks.
  */
 
-function scmanifest_generate($form, &$form_state, $pid) {
+function iiif_generate($form, &$form_state, $pid) {
   $form['title'] = array(
-    '#markup' => 'Generate SC manifest for '.$pid.'<br>'
+    '#markup' => 'Generate IIIF for '.$pid.'<br>'
   );
   $form['object_pid'] = array(
     '#value' =>  $pid->id,
     '#type' => 'hidden'
   );
 
-  if (isset($pid['SC'])) {
+  if (isset($pid['IIIF'])) {
     $form['generate'] = array(
       '#type' => 'submit',
-      '#value' => t('Re-generate SC Manifest'),
+      '#value' => t('Re-generate IIIF'),
       '#weight' => 1,
       '#submit' => array('generate_submit')
     );
   } else {
       $form['generate'] = array(
         '#type' => 'submit',
-        '#value' => t('Generate SC Manifest'),
+        '#value' => t('Generate IIIF'),
         '#weight' => 1,
         '#submit' => array('generate_submit')
       );    
