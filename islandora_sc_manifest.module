@@ -37,7 +37,8 @@ function islandora_sc_manifest_menu() {
 
 function iiif_generation_access($fedora_object) {
   $allowedModels = array(
-    'islandora:bookCModel', 
+    'islandora:bookCModel',
+    'islandora:pageCModel',
     'islandora:sp_basic_image',
     'islandora:sp_large_image_cmodel',
     'islandora:collectionCModel',
