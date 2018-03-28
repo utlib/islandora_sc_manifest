@@ -1,27 +1,33 @@
 <?php
 
 /**
-* Return an assoiciative array of metadata values for the given object's datastream
+* Return an associative array of metadata values for the given object pid
 *
-* @param string $datastream_rdf_xml_string Fedora object's datastream as a RDF-XML string.
+* @param string $pid the string PID of the Fedora object
+* @param string $dsid the datastream name to read the metadata from
 */
-function get_metadatas($datastream_rdf_xml_string) {
+function get_metadatas($pid, $dsid) {
+  $fo = new UTLFedoraObject($user->name, $user->pass);
+  $api_a = $fo->get_api_a(); // Get Fedora repository's Access API.
   $metadatas = array();
-  // Replace all instances of ':' with '__' in datastream_rdf_xml_string, so that we can use simplexml to parse the string.
-  // In SimpleXMLElement, node values with ':' is considered invalid.
-  $datastream_xml_string = str_replace(':', '__', $datastream_rdf_xml_string);
+  try {
+    $datastream_xml_string = $api_a->getDatastreamDissemination($pid, $dsid);
+  } catch (Exception $e) {
+    return $metadatas;
+  }
   // Get the parsed SimpleXMLElement object.
   $datastream_xml_object = simplexml_load_string($datastream_xml_string);
-  // Loop through each metadata and add to $metadatas array.
-  foreach ($datastream_xml_object as $metadata) {
-    $metadata_name = explode("__", $metadata->getName())[1];
-    // Only generate the 'date' metadata. UofT Specific Requirements. 
-    if ($metadata_name=='date'){
-      if (!isset($metadatas[$metadata_name])) {
-        $metadatas[$metadata_name] = array(); // Create new metadata key if it doesn't already exist.
-      }
-      $metadatas[$metadata_name][] = $metadata; // Append metadata value to existing key. 
-    }
+  $xml = new SimpleXMLIterator($datastream_xml_string);
+  $iterator = new RecursiveIteratorIterator($xml);
+  foreach ($iterator as $element) {
+      $metadata_name = $element->getName();
+      // Only grab the 'title' & 'dateIssued' metadata
+      if ($metadata_name=='dateIssued' || $metadata_name=='title') {
+        if (!isset($metadatas[$metadata_name])) {
+          $metadatas[$metadata_name] = array(); // Create new metadata key if it doesn't already exist.
+        }
+        $metadatas[$metadata_name][] = $element[0]->__toString(); // Append metadata value to existing key. 
+      }   
   }
   return $metadatas;
 }

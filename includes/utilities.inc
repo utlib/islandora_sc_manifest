@@ -42,9 +42,7 @@ function __generate_iiif_manifest($object_pid, $from_drush=FALSE, $test=FALSE, $
     );
 
     // Create the metadatas for the Collection
-    $datastream_rdf_xml_string = $api_a->getDatastreamDissemination($object_pid, 'DC'); // 'DC' datastream as a RDF-XML string.
-    $metadatas = get_metadatas($datastream_rdf_xml_string); // Array of (key=>values) metadatas
-    $collection->setMetadata($metadatas);
+    $collection->setMetadata(get_metadatas($object_pid, 'MODS'));
 
     if (in_array('islandora:collectionCModel', $object->models)){
       $children = $fo->get_collection_children($object_pid); // Get all the children objects of this Collection
@@ -91,9 +89,7 @@ function __generate_iiif_manifest($object_pid, $from_drush=FALSE, $test=FALSE, $
     );
 
     // Create the metadatas for the Manifest
-    $datastream_rdf_xml_string = $api_a->getDatastreamDissemination($object_pid, 'DC'); // 'DC' datastream as a RDF-XML string.
-    $metadatas = get_metadatas($datastream_rdf_xml_string); // Array of (key=>values) metadatas
-    $manifest->setMetadata($metadatas);
+    $manifest->setMetadata(get_metadatas($object_pid, 'MODS'));
 
     // Get the pages ordered by sequence number if the object model is of type islandora:bookCModel
     module_load_include('inc', 'islandora_paged_content', 'includes/utilities');
@@ -118,9 +114,7 @@ function __generate_iiif_manifest($object_pid, $from_drush=FALSE, $test=FALSE, $
       $canvas->setResource($resource_uri, $service_uri, $mimetype, $width, $height);
 
       // Create the metadatas for the Canvas
-      $datastream_rdf_xml_string = $api_a->getDatastreamDissemination($page_pid, 'DC'); // 'DC' datastream as a RDF-XML string.
-      $metadatas = get_metadatas($datastream_rdf_xml_string); // Array of (key=>values) metadatas
-      $canvas->setMetadata($metadatas);
+      // $canvas->setMetadata(get_metadatas($object_pid, 'MODS'));
 
       // Add the Canvas to the Sequence (Manifest conatins only 1 Sequence)
       $manifest->addCanvas($canvas);
@@ -139,9 +133,7 @@ function __generate_iiif_manifest($object_pid, $from_drush=FALSE, $test=FALSE, $
     );
 
     // Create the metadatas for the Manifest
-    $datastream_rdf_xml_string = $api_a->getDatastreamDissemination($object_pid, 'DC'); // 'DC' datastream as a RDF-XML string.
-    $metadatas = get_metadatas($datastream_rdf_xml_string); // Array of (key=>values) metadatas
-    $manifest->setMetadata($metadatas);
+    $manifest->setMetadata(get_metadatas($object_pid, 'MODS'));
 
     // Get the single object if its model is of type islandora:sp_basic_image or islandora:sp_large_image_cmodel
     if ($from_drush) echo "Processing Canvas (Page) for Object: $object_pid\n";
@@ -157,16 +149,12 @@ function __generate_iiif_manifest($object_pid, $from_drush=FALSE, $test=FALSE, $
     $resource_uri = $iiif_image_api_base_uri."$object_pid/full/full/0/default.jpg";
     $service_uri = $iiif_image_api_base_uri."$object_pid";
     $mimetype = "image/jpeg";
-    $width = $object->relationships->get('http://islandora.ca/ontology/relsext#', 'width')[0]['object']['value'];
-    $height = $object->relationships->get('http://islandora.ca/ontology/relsext#', 'height')[0]['object']['value'];
-    $width = 9391;
-    $height = 5920;
+    $width = $object['JP2']->relationships->get('http://islandora.ca/ontology/relsext#', 'width')[0]['object']['value'];
+    $height = $object['JP2']->relationships->get('http://islandora.ca/ontology/relsext#', 'height')[0]['object']['value'];
     $canvas->setResource($resource_uri, $service_uri, $mimetype, $width, $height);
 
     // Create the metadatas for the Canvas
-    $datastream_rdf_xml_string = $api_a->getDatastreamDissemination($object_pid, 'DC'); // 'DC' datastream as a RDF-XML string.
-    $metadatas = get_metadatas($datastream_rdf_xml_string); // Array of (key=>values) metadatas
-    $canvas->setMetadata($metadatas);
+    // $canvas->setMetadata(get_metadatas($object_pid, 'MODS'));
 
     // Add the Canvas to the Sequence (Manifest conatins only 1 Sequence)
     $manifest->addCanvas($canvas);
